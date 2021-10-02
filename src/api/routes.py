@@ -33,7 +33,14 @@ def sign_up():
     db.session.add(user)
     db.session.commit()
 
-   #access_token = create_access_token(user.id)
-    access_token = "asdasdasd"
+    #access_token = create_access_token(user.id)
+    #access_token = "asdasdasd"
+    #{"access_token": access_token}
+    return jsonify([]), 200
 
-    return jsonify({"access_token": access_token})
+@api.route("/users", methods=["GET"])
+def get_users():    
+    users = User.query.all()   
+    users = list(map (lambda user: user.serialize(), users))  
+    
+    return jsonify(users), 200
