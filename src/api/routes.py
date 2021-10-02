@@ -16,3 +16,24 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/sign-up', methods=['POST'])
+def sign_up():
+    json= request.get_json()
+
+    if json is None:
+        return
+
+    user = User(
+        email=json.get("email"),
+        password=json.get("password"),
+        is_active = True
+    )
+    
+    db.session.add(user)
+    db.session.commit()
+
+   #access_token = create_access_token(user.id)
+    access_token = "asdasdasd"
+
+    return jsonify({"access_token": access_token})
