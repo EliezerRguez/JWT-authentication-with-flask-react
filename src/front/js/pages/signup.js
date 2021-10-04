@@ -10,13 +10,15 @@ export const Signup = () => {
 	const [confirmPass, setConfirmPass] = useState("");
 	let history = useHistory();
 
-	async function signUp() {
+	async function signUp(event) {
+		event.preventDefault();
+
 		if (password !== confirmPass) {
 			alert("Las constraseñas no coinciden");
 			return;
 		}
-
-		const response = await fetch("https://3001-fuchsia-catfish-iokq3mm9.ws-eu18.gitpod.io/api/signup", {
+		console.log("hasta aqui");
+		const response = await fetch("https://3001-harlequin-lungfish-0yoeppnf.ws-eu18.gitpod.io/api/signup", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -36,7 +38,7 @@ export const Signup = () => {
 	return (
 		<div className="container">
 			<h1>SIGN UP</h1>
-			<form>
+			<form onSubmit={signUp}>
 				<div className="form-group">
 					<input
 						type="email"
@@ -63,7 +65,7 @@ export const Signup = () => {
 						onChange={event => setConfirmPass(event.target.value)}
 					/>
 				</div>
-				<button type="submit" className="btn btn-primary" onClick={signUp}>
+				<button type="submit" className="btn btn-primary">
 					Save
 				</button>
 			</form>

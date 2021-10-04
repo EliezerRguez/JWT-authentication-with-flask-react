@@ -11,7 +11,7 @@ export const Login = () => {
 	let history = useHistory();
 
 	async function login() {
-		const response = await fetch("https://3001-fuchsia-catfish-iokq3mm9.ws-eu18.gitpod.io/api/login", {
+		const response = await fetch("https://3001-harlequin-lungfish-0yoeppnf.ws-eu18.gitpod.io/api/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
