@@ -12,7 +12,7 @@ export const Protected = () => {
 	const protectedData = async (email, password) => {
 		// retrieve token form localStorage
 		const token = localStorage.getItem("jwt-token");
-		const response = await fetch(`https://3001-harlequin-sturgeon-shw6bfzu.ws-eu18.gitpod.io/protected`, {
+		const response = await fetch(`https://3001-fuchsia-catfish-iokq3mm9.ws-eu18.gitpod.io/api/protected`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

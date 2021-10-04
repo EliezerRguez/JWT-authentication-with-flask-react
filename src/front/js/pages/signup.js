@@ -5,8 +5,8 @@ import { useHistory } from "react-router-dom";
 
 export const Signup = () => {
 	//const { store, actions } = useContext(Context);
-	const [email, setEmail] = useState(" ");
-	const [password, setPassword] = useState(" ");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 	const [confirmPass, setConfirmPass] = useState("");
 	let history = useHistory();
 
@@ -16,7 +16,7 @@ export const Signup = () => {
 			return;
 		}
 
-		const response = await fetch("https://3001-harlequin-sturgeon-shw6bfzu.ws-eu18.gitpod.io/api/signup", {
+		const response = await fetch("https://3001-fuchsia-catfish-iokq3mm9.ws-eu18.gitpod.io/api/signup", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -27,9 +27,10 @@ export const Signup = () => {
 				is_active: true
 			})
 		});
-
+		console.log(response);
 		const responseJson = await response.json();
 		history.push("/login");
+		return responseJson;
 	}
 
 	return (

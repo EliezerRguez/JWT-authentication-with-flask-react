@@ -7,7 +7,7 @@ api = Blueprint('api', __name__)
 
 app = Flask(__name__)
 
-app.config["JWT_SECRET_KEY"] = "super123mega-secret"  # Change this "super secret" with something else!
+app.config["JWT_SECRET_KEY"] = "super12mega-secret"  # Change this "super secret" with something else!
 jwt = JWTManager(app)
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -29,7 +29,7 @@ def sign_up():
    # if email is None or password is None or is_active is None:
     #    return jsonify({"msg": "Bad username or password"}), 401
     
-   user = User(email=email, password = password, is_active= is_active)
+   user = User(email = email, password = password, is_active = is_active)
    json= request.get_json()
 
    db.session.add(user)

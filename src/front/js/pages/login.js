@@ -11,7 +11,7 @@ export const Login = () => {
 	let history = useHistory();
 
 	async function login() {
-		const response = await fetch("https://3001-harlequin-sturgeon-shw6bfzu.ws-eu18.gitpod.io/login", {
+		const response = await fetch("https://3001-fuchsia-catfish-iokq3mm9.ws-eu18.gitpod.io/api/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -36,6 +36,7 @@ export const Login = () => {
 		actions.setUsertoken(data.token);
 
 		history.push("/protected");
+		return data;
 	}
 
 	return (
