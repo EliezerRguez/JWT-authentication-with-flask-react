@@ -1,42 +1,46 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export const Protected = () => {
-	let history = useHistory();
 	const { store, actions } = useContext(Context);
-	const [data, setData] = useState(" ");
+	let history = useHistory();
+	const [data, setData] = useState(null);
 
-	const protectedData = async (email, password) => {
+	const showMessage = async () => {
 		// retrieve token form localStorage
 		const token = localStorage.getItem("jwt-token");
-		const response = await fetch(`https://3001-harlequin-lungfish-0yoeppnf.ws-eu18.gitpod.io/api/protected`, {
+		const resp = await fetch(`https://3001-peach-ermine-wk2aeqdn.ws-eu18.gitpod.io/api/protected`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: "Bearer " + token
 			}
 		});
-		if (!resp.ok) throw Error("There was a problem in the login request");
-		const responseJson = await response.json();
-		setData(responseJson);
+
+		if (!resp.ok) {
+			throw Error("There was a problem loading the information...");
+		}
+		const data = await resp.json();
+		setData(data);
 	};
 
 	useEffect(() => {
-		if (store.usertoken === null) history.push("/login");
-		else protectedData();
+		if (store.user_token === null) history.push("/login");
+		else showMessage();
 	}, []);
 
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-			<div className="alert alert-info" />
-			<h1>YOUR PROTECTED DATA HERE</h1>
+		<div className="container">
+			<div className="row">
+				<div className="col">
+					<h1>Hello Rigo!</h1>
+
+					<div className="alert alert-dark text-center">{data ? data.email : "loading..."}</div>
+				</div>
+			</div>
 		</div>
 	);
 };
