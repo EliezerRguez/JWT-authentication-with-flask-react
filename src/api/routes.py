@@ -36,7 +36,7 @@ def create_user():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
     is_active = request.json.get("is_active", None)
-    print(email, password, is_active)
+
     # Query your database for username and password
     if email is None or password is None or is_active is None:
         return jsonify({"msg": "Bad username or password"}), 401

@@ -9,7 +9,7 @@ export const Protected = () => {
 	let history = useHistory();
 	const [data, setData] = useState(null);
 
-	const showMessage = async () => {
+	const dataProtected = async () => {
 		// retrieve token form localStorage
 		const token = localStorage.getItem("jwt-token");
 		const resp = await fetch(`https://3001-copper-beetle-yy92xxhk.ws-eu18.gitpod.io/api/protected`, {
@@ -29,7 +29,7 @@ export const Protected = () => {
 
 	useEffect(() => {
 		if (store.user_token === null) history.push("/login");
-		else showMessage();
+		else dataProtected();
 	}, []);
 
 	return (
