@@ -12,7 +12,7 @@ export const Protected = () => {
 	const showMessage = async () => {
 		// retrieve token form localStorage
 		const token = localStorage.getItem("jwt-token");
-		const resp = await fetch(`https://3001-peach-ermine-wk2aeqdn.ws-eu18.gitpod.io/api/protected`, {
+		const resp = await fetch(`https://3001-copper-beetle-yy92xxhk.ws-eu18.gitpod.io/api/protected`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -33,10 +33,10 @@ export const Protected = () => {
 	}, []);
 
 	return (
-		<div className="container">
+		<div className="container text-center">
 			<div className="row">
 				<div className="col">
-					<h1>Hello Rigo!</h1>
+					<h1>YOUR DATA</h1>
 
 					<div className="alert alert-dark text-center">{data ? data.email : "loading..."}</div>
 				</div>
