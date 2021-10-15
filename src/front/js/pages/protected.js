@@ -12,7 +12,7 @@ export const Protected = () => {
 	const dataProtected = async () => {
 		// retrieve token form localStorage
 		const token = localStorage.getItem("jwt-token");
-		const resp = await fetch(`https://3001-copper-beetle-yy92xxhk.ws-eu18.gitpod.io/api/protected`, {
+		const resp = await fetch(`${process.env.BACKEND_URL}/api/protected`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
